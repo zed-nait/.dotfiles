@@ -1,0 +1,13 @@
+#!/bin/bash
+
+date=$(date +%Y-%m-%d)
+
+time=$(date +%H:%M)
+
+sound=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')
+
+
+notify-send "$date
+$time
+sound:$sound
+$(acpi)" 

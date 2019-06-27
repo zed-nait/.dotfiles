@@ -1,0 +1,38 @@
+diff --git a/drivers/gpu/drm/i915/intel_dp.c b/drivers/gpu/drm/i915/intel_dp.c
+--- a/drivers/gpu/drm/i915/intel_dp.c	2019-06-04 07:59:45.000000000 +0200
++++ b/drivers/gpu/drm/i915/intel_dp.c	2019-06-08 23:39:14.560262180 +0200
+@@ -124,7 +124,7 @@
+ {
+ 	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
+
+-	return intel_dig_port->base.type == INTEL_OUTPUT_EDP;
++	return intel_dig_port->base.type == INTEL_OUTPUT_EDP || strncmp(intel_dp->attached_connector->base.name, "DP-3",4) == 0;
+ }
+
+ static struct intel_dp *intel_attached_dp(struct drm_connector *connector)
+@@ -5977,7 +5977,7 @@
+ 	if (INTEL_GEN(dev_priv) < 5)
+ 		return false;
+
+-	if (INTEL_GEN(dev_priv) < 9 && port == PORT_A)
++	if (INTEL_GEN(dev_priv) < 9 && port == PORT_D)
+ 		return true;
+
+ 	return intel_bios_is_port_edp(dev_priv, port);
+diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i915/intel_lvds.c
+--- a/drivers/gpu/drm/i915/intel_lvds.c	2019-06-04 07:59:45.000000000 +0200
++++ b/drivers/gpu/drm/i915/intel_lvds.c	2019-06-08 23:40:36.153071061 +0200
+@@ -502,6 +502,13 @@
+ /* These systems claim to have LVDS, but really don't */
+ static const struct dmi_system_id intel_no_lvds[] = {
+ 	{
++		.ident = "ThinkPad X230 Nitrocater FHD mod",
++		.matches = {
++			DMI_MATCH(DMI_SYS_VENDOR, "LENOVO"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "2325WUG"),
++		},
++	},
++	{
+ 		.callback = intel_no_lvds_dmi_callback,
+ 		.ident = "Apple Mac Mini (Core series)",
+ 		.matches = {

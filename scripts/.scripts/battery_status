@@ -1,0 +1,31 @@
+#!/bin/sh
+
+while read -r bat; do
+	if [ "$(echo $bat | awk '{print $3}')" != 'Charging,' ]; then	
+    echo $bat | awk '{print $4}'
+		case $(echo $bat | awk '{print $4}' | grep -o '[0-9]\+') in
+			100) echo "" ;;
+			9[0-9]) echo "" ;;
+			8[0-9]) echo "" ;;
+			7[0-9]) echo "" ;;
+			6[0-9]) echo "" ;;
+			5[0-9]) echo "" ;;
+			4[0-9]) echo "" ;;
+			3[0-9]) echo "" ;;
+			2[0-9]) echo "" ;;
+		  1[0-9]) echo "" ;;
+			*) echo "" ;;
+		esac
+	else
+		case $(echo $bat | awk '{print $4}') in
+			100) echo "" ;;
+			9[0-9]) echo "" ;;
+			8[0-9]) echo "" ;;
+			7[0-9]) echo "" ;;
+			[5-6][0-9]) echo "" ;;
+			[3-4][0-9]) echo "" ;;
+			[1-2][0-9]) echo "" ;;
+			*) echo "" ;;
+		esac
+	fi
+done <<< $(acpi)

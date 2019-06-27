@@ -1,0 +1,18 @@
+# Basic configuration
+rofi.width:           35
+rofi.lines:           12
+rofi.padding:					1
+rofi.hide-scrollbar:	true
+rofi.scrollbar-width:	0
+rofi.bw:							1
+
+# Set the desired separator style
+rofi.separator-style: solid
+rofi.font:            Material Design Icons 14;Roboto Regular 14
+
+rofi.modi: run,drun
+
+# Dark theme.
+
+# Light theme.
+rofi.theme: /usr/share/rofi/themes/Paper.rasi

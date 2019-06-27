@@ -1,0 +1,12 @@
+#!/bin/bash
+
+MENU="$(rofi -sep "|" -dmenu -i -p 'System' -lines 6 -columns 1  <<< "Lock|Logout|賈Sleep|豈Hibernate|Reboot|串Shutdown")"
+
+case "$MENU" in
+  *Lock) xsecurelock ;;
+  *Logout) bspwm quit;;
+  *Sleep) systemctl suspend;;
+  *Hibernate) systemctl hibernate;;
+  *Reboot) systemctl reboot ;;
+  *Shutdown) systemctl -i poweroff
+esac

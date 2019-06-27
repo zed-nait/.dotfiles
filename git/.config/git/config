@@ -1,0 +1,6 @@
+[user]
+	email = akinshinao@protonmail.com
+	name = Akinshin Anton
+[core]
+	filemode = false
+	editor = nvim
