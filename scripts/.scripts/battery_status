@@ -1,31 +1,32 @@
 #!/bin/sh
 
 while read -r bat; do
+  capasity=$(echo $bat | awk '{print $4}' | grep -o '[0-9]\+')
+
 	if [ "$(echo $bat | awk '{print $3}')" != 'Charging,' ]; then	
-    echo $bat | awk '{print $4}'
-		case $(echo $bat | awk '{print $4}' | grep -o '[0-9]\+') in
-			100) echo "" ;;
-			9[0-9]) echo "" ;;
-			8[0-9]) echo "" ;;
-			7[0-9]) echo "" ;;
-			6[0-9]) echo "" ;;
-			5[0-9]) echo "" ;;
-			4[0-9]) echo "" ;;
-			3[0-9]) echo "" ;;
-			2[0-9]) echo "" ;;
-		  1[0-9]) echo "" ;;
-			*) echo "" ;;
+		case $capasity in
+			100) echo " $capasity%" ;;
+			9[0-9]) echo " $capasity%" ;;
+			8[0-9]) echo " $capasity%" ;;
+			7[0-9]) echo " $capasity%" ;;
+			6[0-9]) echo " $capasity%" ;;
+			5[0-9]) echo " $capasity%" ;;
+			4[0-9]) echo " $capasity%" ;;
+			3[0-9]) echo " $capasity%" ;;
+			2[0-9]) echo " $capasity%" ;;
+		  1[0-9]) echo " $capasity%" ;;
+			*) echo " $capasity%" ;;
 		esac
 	else
-		case $(echo $bat | awk '{print $4}') in
-			100) echo "" ;;
-			9[0-9]) echo "" ;;
-			8[0-9]) echo "" ;;
-			7[0-9]) echo "" ;;
-			[5-6][0-9]) echo "" ;;
-			[3-4][0-9]) echo "" ;;
-			[1-2][0-9]) echo "" ;;
-			*) echo "" ;;
+		case $capasity in
+			100) echo " $capasity%" ;;
+			9[0-9]) echo " $capasity%" ;;
+			8[0-9]) echo " $capasity%" ;;
+			7[0-9]) echo " $capasity%" ;;
+			[5-6][0-9]) echo " $capasity%" ;;
+			[3-4][0-9]) echo " $capasity%" ;;
+			[1-2][0-9]) echo " $capasity%" ;;
+			*) echo " $capasity%" ;;
 		esac
 	fi
 done <<< $(acpi)

@@ -1,13 +1,11 @@
 #!/bin/bash
 
-date=$(date +%Y-%m-%d)
+lang=$(xkblayout-state print %s | awk '{print toupper($0)}')
 
-time=$(date +%H:%M)
+datetime=$(LC_TIME=en_US.UTF-8 date '+%a, %b %d %H:%M')
 
 sound=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')
 
-
-notify-send "$date
-$time
+notify-send "  $datetime
 sound:$sound
-$(acpi)" 
+$lang" 

@@ -70,14 +70,16 @@ ws-icon-5 = 6;
 label-focused = %icon%
 label-focused-foreground = ${colors.background}
 label-focused-background = ${colors.foreground}
+label-focused-underline = ${colors.foreground}
 label-focused-padding = 1 
 
 label-occupied = %icon%
 label-occupied-padding = 1
 
 label-urgent = %icon%
-label-urgent-foreground = ${colors.red}
+label-urgent-foreground = ${colors.background}
 label-urgent-background = ${colors.red}
+label-urgent-underline = ${colors.red}
 label-urgent-padding = 1
 
 label-empty = %icon%

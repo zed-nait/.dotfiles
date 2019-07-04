@@ -13,5 +13,3 @@ bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true 
 
 polybar-msg cmd restart
-
-~/.fehbg
