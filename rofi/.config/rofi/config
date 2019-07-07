@@ -15,4 +15,4 @@ rofi.modi: run,drun
 # Dark theme.
 
 # Light theme.
-rofi.theme: /usr/share/rofi/themes/Paper.rasi
+rofi.theme: /usr/share/rofi/themes/Arc-Dark.rasi

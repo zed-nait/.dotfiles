@@ -6,6 +6,6 @@ datetime=$(LC_TIME=en_US.UTF-8 date '+%a, %b %d %H:%M')
 
 sound=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')
 
-notify-send "  $datetime
-sound:$sound
-$lang" 
+notify-send "date: $datetime
+sound: $sound
+lang: $lang"

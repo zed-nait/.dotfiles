@@ -1,24 +1,22 @@
 [global]
     ### Display ###
     follow = none
-    geometry = "250x30-15+25"
+    geometry = "300x30-30+30"
     indicate_hidden = yes
     shrink = no
     transparency = 0
-    notification_height = 0
+    notification_height = 3
     separator_height = 0
     padding = 8
     horizontal_padding = 8
-    frame_width = 0
-    frame_color = "#b4bf86"
     separator_color = frame
     sort = yes
     idle_threshold = 120
 
     ### Text ###
 
-    font = "Roboto Mono Regular 10"
-    line_height = 0
+    font = Roboto Light 12
+    line_height = 2
     markup = full
     format = "<b>%s</b>\n%b"
     alignment = left
@@ -34,7 +32,7 @@
 
     icon_position = left 
     max_icon_size = 45
-    icon_path = /usr/share/icons/Papirus-Dark/16x16/status:/usr/share/icons/Papirus-Dark/16x16/devices
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/status:/usr/share/icons/Papirus-Dark/16x16/devices:/usr/share/icons/Papirus-Dark/16x16/actions
 
     ### History ###
 
@@ -52,24 +50,25 @@
     mouse_right_click = close_all
 
 [experimental]
-    per_monitor_dpi = false
+    per_monitor_dpi = false 
+
+[frame]
+  width = 2
+  color = "#17191F"
 
 [urgency_low]
-    background = "#4d4d4c"
-    foreground = "#ffffff"
-    frame_color = "#8e908c"
-    timeout = 3
+    background =  "#434652"
+    foreground =  "#BAC3CF"
+    timeout = 2
 
 [urgency_normal]
-    background = "#4d4d4c"
-    foreground = "#ffffff"
-    frame_color = "#8e908c"
-    timeout = 3
+    background =  "#434652"
+    foreground =  "#BAC3CF"
+    timeout = 2
 
 [urgency_critical]
-    background = "#4d4d4c"
-    foreground = "#ffffff"
-    frame_color = "#8e908c"
+    background =  "#ff4040"
+    foreground =  "#ffffff"
     timeout = 0
 
 # vim: ft=cfg
