@@ -14,7 +14,6 @@
         <value type="int" value="3"/>
         <value type="int" value="15"/>
         <value type="int" value="2"/>
-        <value type="int" value="10"/>
         <value type="int" value="7"/>
         <value type="int" value="9"/>
         <value type="int" value="6"/>
@@ -65,12 +64,14 @@
     <property name="plugin-2" type="string" value="statusnotifier">
       <property name="known-items" type="array">
         <value type="string" value="Telegram Desktop"/>
+        <value type="string" value="qBittorrent"/>
         <value type="string" value="blueman"/>
+        <value type="string" value="nm-applet"/>
       </property>
       <property name="symbolic-icons" type="bool" value="true"/>
       <property name="single-row" type="bool" value="false"/>
-      <property name="square-icons" type="bool" value="false"/>
-      <property name="menu-is-primary" type="bool" value="false"/>
+      <property name="square-icons" type="bool" value="true"/>
+      <property name="menu-is-primary" type="bool" value="true"/>
       <property name="icon-size" type="int" value="22"/>
     </property>
     <property name="plugin-6" type="string" value="power-manager-plugin"/>
@@ -85,21 +86,6 @@
       <property name="caps-lock-indicator" type="bool" value="true"/>
       <property name="display-tooltip-icon" type="bool" value="false"/>
       <property name="group-policy" type="uint" value="2"/>
-    </property>
-    <property name="plugin-10" type="string" value="systray">
-      <property name="names-visible" type="array">
-        <value type="string" value="networkmanager applet"/>
-        <value type="string" value="xfce4-power-manager"/>
-        <value type="string" value="telegram-desktop"/>
-        <value type="string" value="thunar"/>
-        <value type="string" value="blueman-tray"/>
-        <value type="string" value="bluetooth enabled"/>
-        <value type="string" value="telegram desktop"/>
-      </property>
-      <property name="names-hidden" type="array">
-      </property>
-      <property name="size-max" type="uint" value="24"/>
-      <property name="show-frame" type="bool" value="false"/>
     </property>
   </property>
 </channel>
