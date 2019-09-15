@@ -31,8 +31,8 @@
     ### Icons ###
 
     icon_position = left 
-    max_icon_size = 45
-    icon_path = /usr/share/icons/Papirus-Dark/16x16/status:/usr/share/icons/Papirus-Dark/16x16/devices:/usr/share/icons/Papirus-Dark/16x16/actions
+    max_icon_size = 22
+    icon_path = /usr/share/icons/Papirus-Dark/22x22/status:/usr/share/icons/Papirus-Dark/22x22/panel:/usr/local/share/icons/Papirus-Dark/symbolic
 
     ### History ###
 

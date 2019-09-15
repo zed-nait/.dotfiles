@@ -20,8 +20,6 @@ Plug 'Shougo/denite.nvim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'leafgarland/typescript-vim'
 
-Plug 'purescript-contrib/purescript-vim'
-
 call plug#end()
 
 " settigs

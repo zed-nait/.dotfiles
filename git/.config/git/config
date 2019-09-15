@@ -4,3 +4,5 @@
 [core]
 	filemode = false
 	editor = nvim
+[http]
+	cookiefile = /home/zed/.gitcookies
