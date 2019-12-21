@@ -9,8 +9,10 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle nvm
+antigen bundle npm
 antigen bundle git
 antigen bundle pyenv
+antigen bundle vagrant
 
 # Load the theme
 antigen theme avit 
@@ -38,3 +40,7 @@ alias pm='trizen'
 alias zshrc='v ~/.zshrc'
 alias vimrc='v ~/.config/nvim/init.vim'
 alias dunstrc='v ~/.config/dunst/dunstrc'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
