@@ -9,17 +9,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
-Plug 'sbdchd/neoformat'
-Plug 'terryma/vim-multiple-cursors'
-
-Plug 'HerringtonDarkholme/yats.vim'
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/denite.nvim'
-
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-Plug 'leafgarland/typescript-vim'
-
 call plug#end()
 
 " settigs
@@ -71,21 +60,3 @@ let g:indentLine_noConcealCursor = 1
 let g:indentLine_color_term = 239
 let g:indentLine_char = '|'
 
-" code formatting
-nnoremap <silent>f :Neoformat<CR>
-
-"--no-semi --single-quote --write
-let g:standard_prettier_settings = {
-  \ 'exe': 'prettier',
-  \ 'args': ['--stdin', '--parser typescript', '--no-semi', '--single-quote', '--write'],
-  \ 'stdin': 1,
-\ }
-
-" typescript
-let g:deoplete#enable_at_startup = 1
-" call deoplete#custom#option({'max_list': 5})
-
-let g:nvim_typescript#max_completion_detail = 5
-
-let g:neoformat_typescript_prettier = g:standard_prettier_settings
-let g:neoformat_enabled_typescript = ['prettier']

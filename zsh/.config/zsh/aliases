@@ -1,0 +1,23 @@
+alias s!="sudo"
+alias c="clear"
+alias g="git"
+alias e="exit"
+alias v="nvim"
+
+if [[ $OSTYPE == linux* ]]; then
+  alias pm="trizen"
+fi
+
+# shell aliases
+alias lg="ls -a | grep"
+alias mkdir="mkdir -p"
+alias mv="mv -i"
+alias rm="rm -iR"
+alias df="df -h"
+alias du="du -h"
+
+# youtube-dl
+alias yt="youtube-dl"
+
+# misc.
+alias ipp="curl ipinfo.io/ip"

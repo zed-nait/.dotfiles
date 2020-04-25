@@ -1,2 +1,5 @@
-/nvim/.config/nvim/repos/
-/nvim/.config/nvim/.netrwhist
+.DS_Store
+nvim/.config/nvim/repos/
+nvim/.config/nvim/.netrwhist
+zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/histfile

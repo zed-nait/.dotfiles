@@ -1,0 +1,18 @@
+[submodule "zsh/.config/zsh/functions/zsh-syntax-highlighting"]
+	path = zsh/.config/zsh/functions/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/.config/zsh/functions/zsh-completions"]
+	path = zsh/.config/zsh/functions/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "zsh/.config/zsh/functions/zsh-autosuggestions"]
+	path = zsh/.config/zsh/functions/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "zsh/.config/zsh/scripts/zsh-syntax-highlighting"]
+	path = zsh/.config/zsh/scripts/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/.config/zsh/scripts/zsh-completions"]
+	path = zsh/.config/zsh/scripts/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+[submodule "zsh/.config/zsh/scripts/zsh-autosuggestions"]
+	path = zsh/.config/zsh/scripts/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
