@@ -1,7 +1,7 @@
 [user]
-      email = anton.akinshin@pm.me
-      name = Akinshin Anton
+	email = anton.akinshin@pm.me
+	name = Akinshin Anton
 [core]
-      filemode = false
-      editor = nvim
-      excludesfile = gitignore
+	fileMode = false
+	editor = nvim
+	excludesfile = gitignore
