@@ -65,13 +65,14 @@ zmodload -i zsh/complist
 . $ZDOTDIR/functions
 . $ZDOTDIR/scripts/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . $ZDOTDIR/scripts/zsh-autosuggestions/zsh-autosuggestions.zsh
+. $ZDOTDIR/scripts/zsh-nvm/zsh-nvm.plugin.zsh
 check fzf && {
     . $ZDOTDIR/scripts/fzf/fzf.zsh
 }
 
 # Keybindings
 bindkey -e
-bindkey '^H' fzf-history-widget
+bindkey '^R' fzf-history-widget
 bindkey '^F' fzf-file-widget
 
 # Prompt
@@ -85,6 +86,6 @@ precmd() {
     vcs_info
 }
 
-PROMPT='%{$fg[blue]%}%n %{$reset_color%}» %{$fg[white]%}%m%{$reset_color%}$SSH_PROMPT » %{$fg[red]%}%~
+PROMPT='%{$fg[blue]%}%n %{$reset_color%}» %m%{$reset_color%}$SSH_PROMPT » %{$fg[red]%}%~
 %{$fg[cyan]%}${vcs_info_msg_0_}% %{$fg[magenta]%}> '
 RPROMPT="%{$(echotc UP 1)%}%{$fg[blue]%}%T%{$reset_color%}%{$(echotc DO 1)%}"

@@ -21,3 +21,7 @@ alias yt="youtube-dl"
 
 # misc.
 alias ipp="curl ipinfo.io/ip"
+alias ww="curl wttr.in/Samara\?format=3"
+alias wwl="curl wttr.in/Samara"
+
+alias ixio="curl -F 'f:1=<-' ix.io"

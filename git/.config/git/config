@@ -1,12 +1,7 @@
 [user]
-	email = akinshinao@protonmail.com
-	name = Akinshin Anton
+      email = anton.akinshin@pm.me
+      name = Akinshin Anton
 [core]
-	filemode = false
-	editor = nvim
-[http]
-	cookiefile = /home/zed/.gitcookies
-[url "https://"]
-	insteadOf = git://
-[url "https://github.com"]
-	insteadOf = git://github.com
+      filemode = false
+      editor = nvim
+      excludesfile = gitignore
