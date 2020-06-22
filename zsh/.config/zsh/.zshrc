@@ -65,6 +65,7 @@ zmodload -i zsh/complist
 . $ZDOTDIR/scripts/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . $ZDOTDIR/scripts/zsh-autosuggestions/zsh-autosuggestions.zsh
 . $ZDOTDIR/scripts/zsh-history-substring-search/zsh-history-substring-search.zsh
+. $ZDOTDIR/scripts/jsks-plugins/zbk/zbk.zsh
 [[ -d $NVM_DIR ]] && {
     . $ZDOTDIR/scripts/zsh-nvm/zsh-nvm.plugin.zsh
 }

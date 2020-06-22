@@ -22,3 +22,6 @@
 [submodule "zsh/.config/zsh/scripts/zsh-history-substring-search"]
 	path = zsh/.config/zsh/scripts/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
+[submodule "zsh/.config/zsh/scripts/jsks-plugins"]
+	path = zsh/.config/zsh/scripts/jsks-plugins
+	url = https://github.com/jsks/zsh-plugins/
