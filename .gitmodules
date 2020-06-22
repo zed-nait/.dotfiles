@@ -19,3 +19,6 @@
 [submodule "zsh/.config/zsh/scripts/zsh-nvm"]
 	path = zsh/.config/zsh/scripts/zsh-nvm
 	url = https://github.com/lukechilds/zsh-nvm
+[submodule "zsh/.config/zsh/scripts/zsh-history-substring-search"]
+	path = zsh/.config/zsh/scripts/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search

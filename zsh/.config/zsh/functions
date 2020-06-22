@@ -23,3 +23,11 @@ function extract {
         *)          echo "Cannot extract $1."
     esac
 }
+
+function islinux () {
+    [[ $OSTYPE == linux* ]]
+}
+
+function isdarwin () {
+    [[ $OSTYPE == darwin* ]]
+}

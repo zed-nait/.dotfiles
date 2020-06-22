@@ -1,4 +1,4 @@
-fpath=(~/.dotfiles/zsh/.config/zsh/scripts/zsh-completions/src/ $fpath)
+fpath=($ZDOTDIR/scripts/zsh-completions/src/ $fpath)
 
 # History
 HISTFILE=$ZDOTDIR/histfile
@@ -33,7 +33,7 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
 
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.config/zsh/cache
+zstyle ':completion:*' cache-path $ZDOTDIR/cache
 
 # Don't complete entry on line multiple times for the following
 # commands
@@ -59,21 +59,27 @@ zstyle ':vcs_info:*' actionformats "%b|%a%u%c "
 
 zmodload -i zsh/complist
 
-
 # Additional zfiles
 . $ZDOTDIR/aliases
 . $ZDOTDIR/functions
 . $ZDOTDIR/scripts/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . $ZDOTDIR/scripts/zsh-autosuggestions/zsh-autosuggestions.zsh
-. $ZDOTDIR/scripts/zsh-nvm/zsh-nvm.plugin.zsh
+. $ZDOTDIR/scripts/zsh-history-substring-search/zsh-history-substring-search.zsh
+[[ -d $NVM_DIR ]] && {
+    . $ZDOTDIR/scripts/zsh-nvm/zsh-nvm.plugin.zsh
+}
 check fzf && {
     . $ZDOTDIR/scripts/fzf/fzf.zsh
 }
 
 # Keybindings
 bindkey -e
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 bindkey '^R' fzf-history-widget
 bindkey '^F' fzf-file-widget
+
 
 # Prompt
 if [[ -z "$SSH_CLIENT" ]]; then

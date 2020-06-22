@@ -2,7 +2,7 @@ alias s!="sudo"
 alias c="clear"
 alias g="git"
 alias e="exit"
-alias v="nvim"
+alias v="$EDITOR"
 
 if [[ $OSTYPE == linux* ]]; then
   alias pm="trizen"
