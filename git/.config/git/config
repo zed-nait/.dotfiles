@@ -1,6 +1,6 @@
 [user]
-	email = anton.akinshin@pm.me
-	name = Akinshin Anton
+	email = anton.akinshin@mailbox.org
+	name = Anton Akinshin
 [core]
 	fileMode = false
 	editor = nvim
