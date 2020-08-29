@@ -31,3 +31,12 @@ function islinux () {
 function isdarwin () {
     [[ $OSTYPE == darwin* ]]
 }
+
+function cpr() {
+  rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 "$@"
+}
+
+function mvr() {
+  rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 --remove-source-files "$@"
+}
+
