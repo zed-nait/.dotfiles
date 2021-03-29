@@ -7,6 +7,7 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 export NVM_DIR="$HOME/.local/share/nvm"
+export RVM_DIR="$HOME/.rvm"
 
 if isdarwin && [[ -d /opt/local ]]; then
     export PATH="/opt/local/bin:/opt/local/sbin:$PATH"

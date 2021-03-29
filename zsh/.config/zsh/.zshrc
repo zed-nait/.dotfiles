@@ -66,9 +66,16 @@ zmodload -i zsh/complist
 . $ZDOTDIR/scripts/zsh-autosuggestions/zsh-autosuggestions.zsh
 . $ZDOTDIR/scripts/zsh-history-substring-search/zsh-history-substring-search.zsh
 . $ZDOTDIR/scripts/jsks-plugins/zbk/zbk.zsh
+
 [[ -d $NVM_DIR ]] && {
     . $ZDOTDIR/scripts/zsh-nvm/zsh-nvm.plugin.zsh
 }
+
+[[ -d $RVM_DIR ]] && {
+    PATH="$PATH:$RVM_DIR/bin"
+    [[ -s "$RVM_DIR/scripts/rvm" ]] && source "$RVM_DIR/scripts/rvm" ]]
+}
+
 check fzf && {
     . $ZDOTDIR/scripts/fzf/fzf.zsh
 }

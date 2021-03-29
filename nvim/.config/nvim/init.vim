@@ -6,8 +6,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'chriskempson/base16-vim'
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
@@ -48,7 +47,7 @@ syntax enable
 
 let base16colorspace=256
 set termguicolors
-colorscheme base16-tomorrow-night
+colorscheme nord
 
 " airline
 let g:airline_theme = 'minimalist'
