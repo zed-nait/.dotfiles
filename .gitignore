@@ -1,10 +1,13 @@
 .DS_Store
+._.DS_Store
 nvim/.config/nvim/repos/
 nvim/.config/nvim/.netrwhist
+nvim/.vim
 zsh/.config/zsh/.zcompdump
 zsh/.config/zsh/histfile
 zsh/.config/zsh/cache
 zsh/.config/zsh/bookmarks
+zsh/.config/zsh/.zsh_sessions
 emacs/.emacs.d/*
 !emacs/.emacs.d/init.el
 !emacs/.emacs.d/config.org

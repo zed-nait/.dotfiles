@@ -5,3 +5,9 @@
 	fileMode = false
 	editor = nvim
 	excludesfile = gitignore
+[alias]
+  tree = log --graph --decorate --pretty=oneline --abbrev-commit
+  tree-all = log --graph --oneline --all
+[init]
+	defaultBranch = master
+	fileMode = false

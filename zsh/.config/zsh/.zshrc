@@ -1,3 +1,4 @@
+fpath=($ZDOTDIR/scripts/stripe-completion/ $fpath)
 fpath=($ZDOTDIR/scripts/zsh-completions/src/ $fpath)
 
 # History
@@ -44,9 +45,7 @@ zstyle ':acceptline:*' rehash true
 
 #Autoloads
 zstyle :compinstall filename "$ZDOTDIR/.zshrc"
-autoload -Uz compinit
-compinit
-
+autoload -Uz compinit && compinit -i
 autoload -U colors && colors
 autoload -Uz vcs_info
 
@@ -80,6 +79,11 @@ check fzf && {
     . $ZDOTDIR/scripts/fzf/fzf.zsh
 }
 
+[[ -d $GCS ]] && {
+    . $GCS/path.zsh.inc
+    . $GCS/completion.zsh.inc
+}
+
 # Keybindings
 bindkey -e
 bindkey '^[[A' history-substring-search-up
@@ -87,6 +91,36 @@ bindkey '^[[B' history-substring-search-down
 
 bindkey '^R' fzf-history-widget
 bindkey '^F' fzf-file-widget
+
+
+# [Home] - Go to beginning of line
+if [[ -n "${terminfo[khome]}" ]]; then
+  bindkey -M emacs "${terminfo[khome]}" beginning-of-line
+fi
+
+# [End] - Go to end of line
+if [[ -n "${terminfo[kend]}" ]]; then
+  bindkey -M emacs "${terminfo[kend]}"  end-of-line
+fi
+
+# [Backspace] - delete backward
+bindkey -M emacs '^?' backward-delete-char
+
+# [Delete] - delete forward
+if [[ -n "${terminfo[kdch1]}" ]]; then
+  bindkey -M emacs "${terminfo[kdch1]}" delete-char
+else
+  bindkey -M emacs "^[[3~" delete-char
+  bindkey -M emacs "^[3;5~" delete-char
+fi
+
+# # [Ctrl-Delete] - delete whole forward-word
+# bindkey -M emacs '^[[3;5~' kill-word
+# # [Ctrl-RightArrow] - move forward one word
+# bindkey -M emacs '^[[C;5C' forward-word
+# # [Ctrl-LeftArrow] - move backward one word
+# bindkey -M emacs '^[[D;5D' backward-word
+
 
 
 # Prompt
@@ -101,5 +135,5 @@ precmd() {
 }
 
 PROMPT='%{$fg[blue]%}%n %{$reset_color%}» %m%{$reset_color%}$SSH_PROMPT » %{$fg[red]%}%~
-%{$fg[cyan]%}${vcs_info_msg_0_}% %{$fg[magenta]%}> '
+%{$fg[cyan]%}${vcs_info_msg_0_}% %{$fg[magenta]%}λ '
 RPROMPT="%{$(echotc UP 1)%}%{$fg[blue]%}%T%{$reset_color%}%{$(echotc DO 1)%}"
