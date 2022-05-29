@@ -122,7 +122,6 @@ fi
 # bindkey -M emacs '^[[D;5D' backward-word
 
 
-
 # Prompt
 if [[ -z "$SSH_CLIENT" ]]; then
     SSH_PROMPT=""

@@ -2,14 +2,12 @@ alias s!="sudo"
 alias c="clear"
 alias g="git"
 alias e="exit"
-alias v="$EDITOR"
+alias v="nvim"
 alias r="ranger"
 
 switch (uname)
     case Darwin
         alias lsblk="diskutil list"
-    case Linux
-        :
 end
 
 # shell aliases
