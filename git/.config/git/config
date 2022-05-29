@@ -1,13 +1,21 @@
 [user]
-	email = anton.akinshin@mailbox.org
-	name = Anton Akinshin
+  email = anton.akinshin@mailbox.org
+  name = Anton Akinshin
 [core]
-	fileMode = false
-	editor = nvim
-	excludesfile = gitignore
+  fileMode = false
+  editor = nvim
+  excludesfile = gitignore
 [alias]
-  tree = log --graph --decorate --pretty=oneline --abbrev-commit
-  tree-all = log --graph --oneline --all
+  c = commit
+  ca = commit -a
+  cm = commit -m
+  cam = commit -am
+  d = diff
+  dc = diff --cached
+  l = log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit
+  la = log --graph --oneline --all
 [init]
-	defaultBranch = master
-	fileMode = false
+  defaultBranch = master
+  fileMode = false
+[pull]
+  rebase = true
