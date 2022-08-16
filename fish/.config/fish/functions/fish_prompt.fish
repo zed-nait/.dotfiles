@@ -1,8 +1,8 @@
 function fish_prompt
-    set -l separator (set_color white)'»'
+    set -l separator (set_color normal)'»'
     set -l prompt_user (set_color blue)$USER
-    set -l prompt_hostname (set_color white)(prompt_hostname)
-    set -l prompt_pwd (set_color red)(prompt_pwd)
+    set -l prompt_hostname (set_color normal)$hostname
+    set -l prompt_pwd (set_color brred)(prompt_pwd)
     set -l prompt_ssh
     set -l prompt_git
 
@@ -18,9 +18,10 @@ function fish_prompt
 
     echo $prompt_user \
         $separator \
-        $prompt_hostname$prompt_ssh \
+        "$prompt_hostname$prompt_ssh" \
         $separator \
         $prompt_pwd
+
 
     echo -n $prompt_git (set_color magenta)"λ "
 end

@@ -14,3 +14,7 @@ switch (uname)
         export PATH="/opt/local/bin:/opt/local/sbin:$HOME/Library/Python/3.10/bin:$PATH"
         export MANPATH="/opt/local/share/man:$MANPATH"
 end
+
+if test -e "$HOME/.local/share/google-cloud-sdk/path.fish.inc"
+    . "$HOME/.local/share/google-cloud-sdk/path.fish.inc"
+end
