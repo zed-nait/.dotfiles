@@ -15,6 +15,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/goyo.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'liuchengxu/vim-which-key'
 call plug#end()
 
 " settings
