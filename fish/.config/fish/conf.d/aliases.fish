@@ -18,7 +18,7 @@ alias df="df -h"
 alias du="du -h"
 
 # youtube-dl
-alias yt="youtube-dl"
+alias yt="yt-dlp"
 
 # misc.
 alias ipp="curl ipinfo.io/ip"

@@ -19,4 +19,6 @@ if test -e "$HOME/.local/share/google-cloud-sdk/path.fish.inc"
     . "$HOME/.local/share/google-cloud-sdk/path.fish.inc"
 end
 
-source /opt/local/share/fzf/shell/key-bindings.fish
+if test -e "/opt/local/share/fzf/shell/key-bindings.fish"
+	source /opt/local/share/fzf/shell/key-bindings.fish
+end
