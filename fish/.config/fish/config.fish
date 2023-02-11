@@ -11,7 +11,8 @@ export GCS="$HOME/.local/share/google-cloud-sdk"
 
 switch (uname)
     case Darwin
-        export PATH="/opt/local/bin:/opt/local/sbin:$HOME/Library/Python/3.10/bin:$PATH"
+	export N_PREFIX="$HOME/.local/n"
+        export PATH="/opt/local/bin:/opt/local/sbin:$HOME/Library/Python/3.10/bin:$N_PREFIX/bin:$PATH"
         export MANPATH="/opt/local/share/man:$MANPATH"
 end
 
@@ -22,3 +23,4 @@ end
 if test -e "/opt/local/share/fzf/shell/key-bindings.fish"
 	source /opt/local/share/fzf/shell/key-bindings.fish
 end
+
