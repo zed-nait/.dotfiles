@@ -1,4 +1,5 @@
 function fish_prompt
+    set -l last_status $status
     set -l separator (set_color normal)'»'
     set -l prompt_user (set_color blue)$USER
     set -l prompt_hostname (set_color normal)$hostname
@@ -23,5 +24,11 @@ function fish_prompt
         $prompt_pwd
 
 
-    echo -n $prompt_git (set_color magenta)"λ "
+    if test $last_status = 0
+        set status_indicator (set_color magenta)"λ "
+    else
+        set status_indicator (set_color red)"λ "
+    end
+
+    echo -n $prompt_git $status_indicator
 end

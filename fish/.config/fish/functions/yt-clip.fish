@@ -6,5 +6,5 @@ function yt-clip
     set -l url $argv[1]
     set -l filename (default (yt-dlp --get-filename -f $url) $argv[4] )
 
-    yt-dlp -f "(bestvideo+bestaudio/best)[protocol!*=dash]" --external-downloader ffmpeg --external-downloader-args "ffmpeg_i:-loglevel warning -hide_banner -stats -ss $argv[2] -to $argv[3]" -o "$filename" "$url"
+    yt-dlp  --external-downloader ffmpeg --external-downloader-args "ffmpeg_i:-loglevel warning -hide_banner -stats -ss $argv[2] -to $argv[3]" -o "$filename" "$url"
 end
