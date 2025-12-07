@@ -10,9 +10,16 @@ export GCS="$HOME/.local/share/google-cloud-sdk"
 
 switch (uname)
     case Darwin
-        export N_PREFIX="$HOME/.local/n"
+        export N_PREFIX="$HOME/.local/share/n"
+        export N_CACHE_PREFIX="$HOME/.local/share/"
         export PATH="/opt/local/bin:/opt/local/sbin:$HOME/Library/Python/3.11/bin:$N_PREFIX/bin:$HOME/.local/bin:$PATH"
         export MANPATH="/opt/local/share/man:$MANPATH"
+        
+        set -gx PNPM_HOME "/Users/zed/Library/pnpm"
+
+        if not string match -q -- $PNPM_HOME $PATH
+            set -gx PATH "$PNPM_HOME" $PATH
+        end
 end
 
 if test -e "$HOME/.local/share/google-cloud-sdk/path.fish.inc"
@@ -26,3 +33,8 @@ end
 if test -e "$HOME/.docker/bin"
     set --export --prepend PATH "/Users/zed/.docker/bin"
 end
+
+if test -e "$HOME/.orbstack/shell/init2.fish"
+    source /.orbstack/shell/init2.fish 2>/dev/null || :
+end
+
