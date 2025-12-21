@@ -5,6 +5,15 @@ export EDITOR=nvim || export EDITOR=vim
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+# Nix
+if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+else if test -e $HOME/.nix-profile/etc/profile.d/nix.fish
+    source $HOME/.nix-profile/etc/profile.d/nix.fish
+else if test -e /nix/var/nix/profiles/default/bin
+    set -gx PATH /nix/var/nix/profiles/default/bin $PATH
+end
+
 export RVM_DIR="$HOME/.rvm"
 export GCS="$HOME/.local/share/google-cloud-sdk"
 

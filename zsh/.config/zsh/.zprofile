@@ -4,6 +4,13 @@ export EDITOR=nvim || export EDITOR=vim
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+# Nix
+if [[ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+    . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+elif [[ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then
+    . $HOME/.nix-profile/etc/profile.d/nix.sh
+fi
+
 # Node (N - sync with fish)
 export N_PREFIX="$HOME/.local/share/n"
 export N_CACHE_PREFIX="$HOME/.local/share/"
