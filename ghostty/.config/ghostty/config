@@ -1,8 +1,7 @@
 # Font
 font-family = Comic Code Ligatures
 font-size = 14
-font-thicken = true
-font-thicken-strength = 20
+font-thicken = false
 adjust-cell-width = -10%
 adjust-cell-height = 0%
 minimum-contrast = 0.4
