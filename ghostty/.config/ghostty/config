@@ -1,0 +1,36 @@
+# Font
+font-family = Comic Code Ligatures
+font-size = 14
+font-thicken = true
+font-thicken-strength = 20
+adjust-cell-width = -10%
+adjust-cell-height = 0%
+minimum-contrast = 0.4
+window-colorspace=srgb
+
+# Shell
+command = /opt/local/bin/tmux
+
+# Theme
+theme = light:kaolin-light,dark:kaolin-dark
+
+# Cursor
+cursor-style = bar
+cursor-style-blink = true
+
+# Scrollback
+scrollback-limit = 10000000
+
+# Window
+window-padding-x = 4
+window-padding-y = 4
+
+# Keybinds
+keybind = cmd+t=ignore
+keybind = cmd+w=ignore
+
+# macOS
+macos-titlebar-style = transparent
+macos-option-as-alt = true
+
+title = " "
