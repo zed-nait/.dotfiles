@@ -1,0 +1,14 @@
+# SSH indicator
+if [[ -z "$SSH_CLIENT" ]]; then
+    SSH_PROMPT=""
+else
+    SSH_PROMPT="[%{$fg[red]%}SSH%{$reset_color%}]"
+fi
+
+precmd() {
+    vcs_info
+}
+
+PROMPT='%{$fg[blue]%}%n %{$reset_color%}» %m%{$reset_color%}$SSH_PROMPT » %{$fg[red]%}%~
+%{$fg[cyan]%}${vcs_info_msg_0_}% %{$fg[magenta]%}λ '
+RPROMPT="%{$(echotc UP 1)%}%{$fg[blue]%}%T%{$reset_color%}%{$(echotc DO 1)%}"

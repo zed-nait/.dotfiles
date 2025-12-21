@@ -3,9 +3,14 @@ alias c="clear"
 alias g="git"
 alias e="exit"
 alias v="$EDITOR"
+alias r="ranger"
 
 if [[ $OSTYPE == linux* ]]; then
   alias pm="trizen"
+fi
+
+if [[ $OSTYPE == darwin* ]]; then
+  alias lsblk="diskutil list"
 fi
 
 # shell aliases
@@ -16,8 +21,8 @@ alias rm="rm -iR"
 alias df="df -h"
 alias du="du -h"
 
-# youtube-dl
-alias yt="youtube-dl"
+# yt-dlp
+alias yt="yt-dlp"
 
 # misc.
 alias ipp="curl ipinfo.io/ip"

@@ -1,5 +1,21 @@
-fpath=($ZDOTDIR/scripts/stripe-completion/ $fpath)
-fpath=($ZDOTDIR/scripts/zsh-completions/src/ $fpath)
+# zplug (auto-install if not present)
+export ZPLUG_HOME=~/.zplug
+[[ ! -d $ZPLUG_HOME ]] && git clone https://github.com/zplug/zplug $ZPLUG_HOME
+[[ -f $ZPLUG_HOME/init.zsh ]] && {
+    source $ZPLUG_HOME/init.zsh
+
+    zplug "zsh-users/zsh-autosuggestions"
+    zplug "zsh-users/zsh-syntax-highlighting"
+    zplug "zsh-users/zsh-completions"
+    zplug "zsh-users/zsh-history-substring-search"
+    zplug "unixorn/warhol.plugin.zsh"
+
+    if ! zplug check; then
+        zplug install
+    fi
+
+    zplug load
+}
 
 # History
 HISTFILE=$ZDOTDIR/histfile
@@ -25,7 +41,7 @@ setopt longlistjobs nohup notify
 # Prompting
 setopt prompt_subst
 
-# zstyle comletions
+# zstyle completions
 zstyle ':completion:*' completer _complete _ignored _match _correct _approximate
 zstyle ':completion:*' original false
 zstyle ':completion:*:match:*' original only
@@ -36,14 +52,14 @@ zstyle ':completion:*:options' auto-description '%d'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path $ZDOTDIR/cache
 
-# Don't complete entry on line multiple times for the following
-# commands
 zstyle ':completion:*:(rm|kill|diff):*' ignore-line yes
-
-# Rehash so that completion doesn't fail when new command added
 zstyle ':acceptline:*' rehash true
 
-#Autoloads
+# LS_COLORS in completions
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu yes=long select
+
+# Autoloads
 zstyle :compinstall filename "$ZDOTDIR/.zshrc"
 autoload -Uz compinit && compinit -i
 autoload -U colors && colors
@@ -58,81 +74,59 @@ zstyle ':vcs_info:*' actionformats "%b|%a%u%c "
 
 zmodload -i zsh/complist
 
-# Additional zfiles
+# Additional files
 . $ZDOTDIR/aliases
 . $ZDOTDIR/functions
-. $ZDOTDIR/scripts/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-. $ZDOTDIR/scripts/zsh-autosuggestions/zsh-autosuggestions.zsh
-. $ZDOTDIR/scripts/zsh-history-substring-search/zsh-history-substring-search.zsh
-. $ZDOTDIR/scripts/jsks-plugins/zbk/zbk.zsh
 
-[[ -d $NVM_DIR ]] && {
-    . $ZDOTDIR/scripts/zsh-nvm/zsh-nvm.plugin.zsh
-}
+# Modern tools
+# zoxide (smart cd)
+command -v zoxide &> /dev/null && eval "$(zoxide init zsh --cmd cd)"
 
-[[ -d $RVM_DIR ]] && {
-    PATH="$PATH:$RVM_DIR/bin"
-    [[ -s "$RVM_DIR/scripts/rvm" ]] && source "$RVM_DIR/scripts/rvm" ]]
-}
+# direnv (auto .envrc)
+command -v direnv &> /dev/null && eval "$(direnv hook zsh)"
 
-check fzf && {
-    . $ZDOTDIR/scripts/fzf/fzf.zsh
-}
+# grc (colored output)
+[[ -f /opt/local/etc/grc.zsh ]] && source /opt/local/etc/grc.zsh
 
-[[ -d $GCS ]] && {
-    . $GCS/path.zsh.inc
-    . $GCS/completion.zsh.inc
-}
+# fzf (system)
+[[ -f /opt/local/share/fzf/shell/key-bindings.zsh ]] && source /opt/local/share/fzf/shell/key-bindings.zsh
+[[ -f /opt/local/share/fzf/shell/completion.zsh ]] && source /opt/local/share/fzf/shell/completion.zsh
+
+# Docker
+[[ -d $HOME/.docker/bin ]] && export PATH="$HOME/.docker/bin:$PATH"
+
+# OrbStack (macOS)
+isdarwin && [[ -f $HOME/.orbstack/shell/init.zsh ]] && source $HOME/.orbstack/shell/init.zsh 2>/dev/null
 
 # Keybindings
 bindkey -e
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
-bindkey '^R' fzf-history-widget
-bindkey '^F' fzf-file-widget
-
+bindkey '^[[Z' reverse-menu-complete  # Shift+Tab - back in completions menu
+bindkey '^B' autosuggest-toggle       # Ctrl+B - toggle autosuggestions
+WORDCHARS=${WORDCHARS/\/}             # Ctrl+W - remove path segment, not whole path
 
 # [Home] - Go to beginning of line
-if [[ -n "${terminfo[khome]}" ]]; then
-  bindkey -M emacs "${terminfo[khome]}" beginning-of-line
-fi
+[[ -n "${terminfo[khome]}" ]] && bindkey -M emacs "${terminfo[khome]}" beginning-of-line
 
 # [End] - Go to end of line
-if [[ -n "${terminfo[kend]}" ]]; then
-  bindkey -M emacs "${terminfo[kend]}"  end-of-line
-fi
+[[ -n "${terminfo[kend]}" ]] && bindkey -M emacs "${terminfo[kend]}" end-of-line
 
 # [Backspace] - delete backward
 bindkey -M emacs '^?' backward-delete-char
 
 # [Delete] - delete forward
 if [[ -n "${terminfo[kdch1]}" ]]; then
-  bindkey -M emacs "${terminfo[kdch1]}" delete-char
+    bindkey -M emacs "${terminfo[kdch1]}" delete-char
 else
-  bindkey -M emacs "^[[3~" delete-char
-  bindkey -M emacs "^[3;5~" delete-char
+    bindkey -M emacs "^[[3~" delete-char
+    bindkey -M emacs "^[3;5~" delete-char
 fi
-
-# # [Ctrl-Delete] - delete whole forward-word
-# bindkey -M emacs '^[[3;5~' kill-word
-# # [Ctrl-RightArrow] - move forward one word
-# bindkey -M emacs '^[[C;5C' forward-word
-# # [Ctrl-LeftArrow] - move backward one word
-# bindkey -M emacs '^[[D;5D' backward-word
-
 
 # Prompt
-if [[ -z "$SSH_CLIENT" ]]; then
-    SSH_PROMPT=""
-else
-    SSH_PROMPT="[%{$fg[red]%}SSH%{$reset_color%}]"
+. $ZDOTDIR/prompt
+
+if command -v motd &> /dev/null
+then
+    motd
 fi
-
-precmd() {
-    vcs_info
-}
-
-PROMPT='%{$fg[blue]%}%n %{$reset_color%}» %m%{$reset_color%}$SSH_PROMPT » %{$fg[red]%}%~
-%{$fg[cyan]%}${vcs_info_msg_0_}% %{$fg[magenta]%}λ '
-RPROMPT="%{$(echotc UP 1)%}%{$fg[blue]%}%T%{$reset_color%}%{$(echotc DO 1)%}"
