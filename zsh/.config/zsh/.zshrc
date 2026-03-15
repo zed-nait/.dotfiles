@@ -59,6 +59,10 @@ zstyle ':acceptline:*' rehash true
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu yes=long select
 
+# OrbStack completions (must be before compinit)
+[[ "$OSTYPE" == darwin* ]] && [[ -d /Applications/OrbStack.app/Contents/Resources/completions/zsh ]] && \
+    fpath+=/Applications/OrbStack.app/Contents/Resources/completions/zsh
+
 # Autoloads
 zstyle :compinstall filename "$ZDOTDIR/.zshrc"
 autoload -Uz compinit && compinit -i
@@ -79,6 +83,9 @@ zmodload -i zsh/complist
 . $ZDOTDIR/functions
 
 # Modern tools
+# pnpm
+command -v pnpm &> /dev/null && eval "$(pnpm completion zsh)"
+
 # zoxide (smart cd)
 command -v zoxide &> /dev/null && eval "$(zoxide init zsh --cmd cd)"
 

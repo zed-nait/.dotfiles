@@ -1,0 +1,86 @@
+{
+  "coc.preferences.formatOnSave": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "nix",
+    "terraform",
+    "json",
+    "yaml"
+  ],
+  "suggest.noselect": true,
+  "suggest.enablePreselect": false,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.keyMappings.global": {
+    "<cr>": ["expandable?", "expand", "open"],
+    "v": "open:vsplit",
+    "s": "open:split"
+  },
+
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    },
+    "nix": {
+      "command": "nil",
+      "filetypes": ["nix"],
+      "rootPatterns": ["flake.nix", "default.nix", "shell.nix"],
+      "settings": {
+        "nil": {
+          "formatting": {
+            "command": ["nixfmt"]
+          }
+        }
+      }
+    },
+    "ansible": {
+      "command": "ansible-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["yaml.ansible", "ansible"],
+      "rootPatterns": ["ansible.cfg", "playbook.yml", "site.yml"],
+      "initializationOptions": {
+        "ansible": {
+          "path": "ansible"
+        },
+        "ansibleLint": {
+          "enabled": true,
+          "path": "ansible-lint"
+        },
+        "python": {
+          "interpreterPath": "python3"
+        }
+      }
+    }
+  },
+
+  "pyright.enable": true,
+  "python.linting.enabled": true,
+  "python.formatting.provider": "black",
+
+  "intelephense.licenceKey": "",
+  "intelephense.files.maxSize": 5000000,
+
+  "json.schemas": [
+    {
+      "fileMatch": ["package.json"],
+      "url": "https://json.schemastore.org/package.json"
+    },
+    {
+      "fileMatch": ["tsconfig.json", "tsconfig.*.json"],
+      "url": "https://json.schemastore.org/tsconfig.json"
+    }
+  ],
+
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml",
+    "https://json.schemastore.org/ansible-playbook.json": "**/playbook*.yml"
+  }
+}

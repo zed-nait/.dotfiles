@@ -174,23 +174,6 @@
   (setq swiper-action-recenter t)
   (setq swiper-goto-start-of-match t))
 
-(use-package counsel
-  :hook (ivy-mode . counsel-mode)
-  :config
-  (setq counsel-rg-base-command "rg --vimgrep %s")
-  (global-set-key (kbd "s-P") #'counsel-M-x)
-  (global-set-key (kbd "s-f") #'counsel-grep-or-swiper))
-
-(use-package counsel-projectile
-  :config
-  (counsel-projectile-mode +1))
-
-(use-package swiper
-  :after ivy
-  :config
-  (setq swiper-action-recenter t)
-  (setq swiper-goto-start-of-match t))
-
 (use-package ivy-rich
   :config
   (ivy-rich-mode +1)
@@ -219,6 +202,7 @@
   (setq wgrep-auto-save-buffer t))
 
 (use-package prescient
+  :defer t
   :config
   (setq prescient-filter-method '(literal regexp initialism fuzzy))
   (prescient-persist-mode +1))
@@ -247,8 +231,7 @@
           js-jsx-mode
           typescript-mode
           web-mode
-          rescript-mode
-          ) . lsp)
+          rescript-mode) . lsp)
   :commands lsp
   :config
   (setq lsp-auto-guess-root t)
@@ -258,7 +241,7 @@
   (setq lsp-signature-auto-activate nil)
   (setq lsp-enable-folding nil)
   (setq lsp-enable-snippet nil)
-  (setq lsp-enable-completion-at-point nil)
+  (setq lsp-enable-completion-at-point t)
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   (setq lsp-idle-delay 0.5)
   (setq lsp-prefer-capf t)
@@ -276,38 +259,6 @@
     (add-hook 'rescript-mode-hook 'lsp-ui-doc-mode))
   
 )
-
-(use-package company-lsp
-  :commands company-lsp
-  :config
-  (setq company-lsp-cache-candidates 'auto)
-  (push 'company-lsp company-backends)
-  (add-to-list 'company-lsp-filter-candidates '(mspyls . t))
-  (defun company-lsp--on-completion (response prefix)
-    "Note: This is a (hack) workaround for candidate filtering issues in mspyls.
- Handle completion RESPONSE.
- PREFIX is a string of the prefix when the completion is requested.
- Return a list of strings as the completion candidates."
-    (let* ((incomplete (and (hash-table-p response) (gethash "isIncomplete" response)))
-           (items (cond ((hash-table-p response) (gethash "items" response))
-                        ((sequencep response) response)))
-           (candidates (mapcar (lambda (item)
-                                 (company-lsp--make-candidate item prefix))
-                               (lsp--sort-completions items)))
-           (server-id (lsp--client-server-id (lsp--workspace-client lsp--cur-workspace)))
-           (should-filter (or (eq company-lsp-cache-candidates 'auto) ; change from t to 'auto
-                              (and (null company-lsp-cache-candidates)
-                                   (company-lsp--get-config company-lsp-filter-candidates server-id)))))
-      (when (null company-lsp--completion-cache)
-        (add-hook 'company-completion-cancelled-hook #'company-lsp--cleanup-cache nil t)
-        (add-hook 'company-completion-finished-hook #'company-lsp--cleanup-cache nil t))
-      (when (eq company-lsp-cache-candidates 'auto)
-        ;; Only cache candidates on auto mode. If it's t company caches the
-        ;; candidates for us.
-        (company-lsp--cache-put prefix (company-lsp--cache-item-new candidates incomplete)))
-      (if should-filter
-          (company-lsp--filter-candidates candidates prefix)
-        candidates))))
 
 (use-package company
   :hook (prog-mode . company-mode)
@@ -336,11 +287,16 @@
   (setq flycheck-check-syntax-automatically '(save mode-enabled newline))
   (setq flycheck-display-errors-delay 0.1))
 
+(use-package typescript-mode
+  :mode "\\.ts\\'"
+  :config
+  (setq typescript-indent-level zed/indent-width))
+
 (use-package web-mode
   :mode (("\\.html?\\'" . web-mode)
          ("\\.css\\'"   . web-mode)
          ("\\.jsx?\\'"  . web-mode)
-         ("\\.tsx?\\'"  . web-mode)
+         ("\\.tsx\\'"   . web-mode)
          ("\\.json\\'"  . web-mode))
   :config
   (setq web-mode-markup-indent-offset zed/indent-width)
@@ -362,6 +318,7 @@
                                (setq-local emmet-expand-jsx-className? t))))
 
 (use-package format-all
+  :defer t
   :preface
   (defun zed/format-code ()
     "Auto-format whole buffer."
@@ -388,8 +345,8 @@
   :preface
   (defun zed/set-default-font ()
     (interactive)
-    (when (member "Hack" (font-family-list))
-      (set-face-attribute 'default nil :family "Hack"))
+    (when (member "ComicCodeLigatures Nerd Font" (font-family-list))
+      (set-face-attribute 'default nil :family "ComicCodeLigatures Nerd Font"))
     (set-face-attribute 'default nil
                         :height 140
                         :weight 'normal))
@@ -488,28 +445,10 @@
   :diminish
   :config (evil-commentary-mode +1))
 
-(use-package evil-magit)
-
 ;; Git Integration
 (use-package magit
   :bind ("C-x g" . magit-status)
   :config (add-hook 'with-editor-mode-hook #'evil-insert-state))
-
-;; Ido, ido-vertical, ido-ubiquitous and fuzzy matching
-(use-package ido
-  :config
-  (ido-mode +1)
-  (setq ido-everywhere t
-        ido-enable-flex-matching t))
-
-(use-package ido-vertical-mode
-  :config
-  (ido-vertical-mode +1)
-  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
-
-(use-package ido-completing-read+ :config (ido-ubiquitous-mode +1))
-
-(use-package flx-ido :config (flx-ido-mode +1))
 
 ;; Org Mode
 (use-package org
@@ -534,12 +473,16 @@
                   (when (equal tmp/company-point (point))
                     (yas-expand)))))
 
-(use-package yasnippet-snippets)
+(use-package yasnippet-snippets
+  :after yasnippet)
 
 ;; Useful major models
-(use-package markdown-mode :hook (markdown-mode . visual-line-mode))
+(use-package markdown-mode
+  :mode ("\\.md\\'" . markdown-mode)
+  :hook (markdown-mode . visual-line-mode))
 
-(use-package json-mode)
+(use-package json-mode
+  :defer t)
 
 ;; Diminish minor models
 (use-package diminish
@@ -579,10 +522,6 @@
   (setq neo-theme 'nerd)
   (setq neo-show-hidden-files t)
   (setq neo-window-width 30))
-
-(customize-set-variable
-  'lsp-rescript-server-command
-    '("node" "/Users/zed/.vscode-oss/extensions/chenglou92.rescript-vscode-1.3.0/server/out/server.js" "--stdio"))
 
 (provide 'init)
 ;; init.el ends here
